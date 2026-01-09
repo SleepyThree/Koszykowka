@@ -1,18 +1,31 @@
 package com.example.lebronjames;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.lang.invoke.MutableCallSite;
+
 public class PunktyViewModel extends ViewModel {
-    public int getPunkty() {
+    MutableLiveData<Integer>punkty;
+
+    public MutableLiveData<Integer> getPunkty() {
+        if (punkty == null){
+            punkty = new MutableLiveData<>();
+            punkty.setValue(0);
+        }
         return punkty;
     }
 
-    public void setPunkty(int punkty) {
+    public void setPunkty(MutableLiveData<Integer> punkty) {
+        if (punkty == null){
+            punkty = new MutableLiveData<>();
+            punkty.setValue(0);
+        }
         this.punkty = punkty;
     }
 
-    private int punkty;
     public void addPunkty(int p){
-        punkty+=p;
+        int aktualnePunkty = getPunkty().getValue();
+        punkty.setValue(aktualnePunkty+p);
     }
 }

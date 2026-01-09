@@ -12,56 +12,57 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.lebronjames.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
-    private TextView textviewPunkty;
-    private Button button, button2, button3;
+
+
     private int punkty;
 
+    private ActivityMainBinding binding;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
         setContentView(R.layout.activity_main);
-
-        textviewPunkty=findViewById(R.id.textviewPunkty);
-        button=findViewById(R.id.button);
-        button2=findViewById(R.id.button2);
-        button3=findViewById(R.id.button3);
+        setContentView(view);
         if (savedInstanceState != null){
             punkty = savedInstanceState.getInt("PUNKTY");
         }
 
-        textviewPunkty.setText(String.valueOf(punkty));
-        button.setOnClickListener(
+        binding.textviewPunkty.setText(String.valueOf(punkty));
+        binding.button.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         punkty++;
-                        textviewPunkty.setText(String.valueOf(punkty));
+                        binding.textviewPunkty.setText(String.valueOf(punkty));
 
                     }
                 }
         );
 
-        button2.setOnClickListener(
+        binding.button2.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         punkty+=2;
-                        textviewPunkty.setText(String.valueOf(punkty));
+                        binding.textviewPunkty.setText(String.valueOf(punkty));
 
                     }
                 }
         );
 
-        button3.setOnClickListener(
+        binding.button3.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         punkty += 3;
-                        textviewPunkty.setText(String.valueOf(punkty));
+                        binding.textviewPunkty.setText(String.valueOf(punkty));
                     }
                 }
         );
